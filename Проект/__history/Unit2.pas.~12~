@@ -1,0 +1,138 @@
+unit Unit2;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.pngimage,
+  Vcl.ExtCtrls, Vcl.Grids, Vcl.Menus;
+
+type
+  TForm2 = class(TForm)
+    Image1: TImage;
+    Label1: TLabel;
+    StringGrid1: TStringGrid;
+    Label2: TLabel;
+    StringGrid2: TStringGrid;
+    Label3: TLabel;
+    StringGrid3: TStringGrid;
+    Label4: TLabel;
+    StringGrid4: TStringGrid;
+    Label5: TLabel;
+    StringGrid5: TStringGrid;
+    Label6: TLabel;
+    MainMenu1: TMainMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    N5: TMenuItem;
+    N6: TMenuItem;
+    procedure Button1Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
+    procedure N5Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+  f: text;
+  i,k: integer;
+  s: string;
+
+implementation
+
+{$R *.dfm}
+
+uses Unit1, Unit3, Unit4, Unit5, Unit6, Unit7;
+
+
+
+
+procedure TForm2.Button1Click(Sender: TObject);
+begin
+form2.close;
+form1.show;
+end;
+
+
+
+procedure TForm2.FormActivate(Sender: TObject);
+begin
+assignfile(f, ExtractFilePath(ParamStr(0))+'Тест\результаты теста по категориям.txt');
+reset(f);
+i:=1 ;
+k:=1;
+for k:=1 to 5 do
+  begin
+  readln(f, s);
+  stringgrid1.cells[k,0]:= s; // считывание данных
+  i:=i+1;
+  end;
+i:=1;
+k:=5;
+for k:=5 to 10 do
+  begin
+  readln(f, s);
+  stringgrid2.cells[k,0]:= s; // считывание данных
+  i:=i+1;
+  end;
+i:=1 ;
+k:=10;
+for k:= 10 to 15 do
+  begin
+  readln(f, s);
+  stringgrid3.cells[k,0]:= s; // считывание данных
+  i:=i+1;
+  end;
+i:=1;
+k:=15 ;
+for k:=15 to 20 do
+  begin
+  readln(f, s);
+  stringgrid4.cells[k,0]:= s; // считывание данных
+  delete(s,1,1);
+  i:=i+1;
+  end;
+  k:=20 ;
+  i:=1;
+for k:=20 to 25 do
+  begin
+  readln(f, s);
+  stringgrid5.cells[k,0]:= s; // считывание данных
+  i:=i+1;
+  end;
+  CloseFile(f);
+end;
+
+procedure TForm2.N2Click(Sender: TObject);
+begin
+form7.show;
+form2.close;
+end;
+
+procedure TForm2.N3Click(Sender: TObject);
+begin
+form4.show;
+form2.close;
+end;
+
+procedure TForm2.N4Click(Sender: TObject);
+begin
+form2.close;
+form5.show;
+end;
+
+procedure TForm2.N5Click(Sender: TObject);
+begin
+form2.close;
+form6.show;
+end;
+
+end.

@@ -1,0 +1,175 @@
+unit Unit9;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.Imaging.pngimage,
+  Vcl.ExtCtrls, Unit1, Unit2, Unit3, Unit4, Unit5, Unit6, Unit7, Unit8,
+  Vcl.Imaging.jpeg, Vcl.StdCtrls, Vcl.OleCtrls, SHDocVw, ShellAPI;
+
+type
+  TForm9 = class(TForm)
+    Image1: TImage;
+    MainMenu1: TMainMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    N5: TMenuItem;
+    N6: TMenuItem;
+    N7: TMenuItem;
+    Panel1: TPanel;
+    Image2: TImage;
+    Image3: TImage;
+    Image4: TImage;
+    Image5: TImage;
+    Image6: TImage;
+    Image7: TImage;
+    Image8: TImage;
+    Image9: TImage;
+    Image10: TImage;
+    Label1: TLabel;
+    WebBrowser1: TWebBrowser;
+    procedure N2Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
+    procedure N5Click(Sender: TObject);
+    procedure N6Click(Sender: TObject);
+    procedure Image2Click(Sender: TObject);
+    procedure Image3Click(Sender: TObject);
+    procedure Image4Click(Sender: TObject);
+    procedure Image5Click(Sender: TObject);
+    procedure Image6Click(Sender: TObject);
+    procedure Image7Click(Sender: TObject);
+    procedure Image8Click(Sender: TObject);
+    procedure Image9Click(Sender: TObject);
+    procedure Image10Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure N7Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form9: TForm9;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm9.FormCreate(Sender: TObject);
+begin
+webbrowser1.Hide;
+end;
+
+procedure TForm9.Image10Click(Sender: TObject);
+begin
+label1.Caption:='Ваш результат ';
+panel1.Visible:=false;
+webbrowser1.Show;
+webbrowser1.Navigate(ExtractFilePath(ParamStr(0))+'web\Игра тип личности\энергетический.htm');
+end;
+
+procedure TForm9.Image2Click(Sender: TObject);
+begin
+label1.Caption:='Ваш результат ';
+panel1.Visible:=false;
+webbrowser1.Show;
+webbrowser1.Navigate(ExtractFilePath(ParamStr(0))+'web\Игра тип личности\воспитанный.htm');
+end;
+
+procedure TForm9.Image3Click(Sender: TObject);
+begin
+label1.Caption:='Ваш результат ';
+panel1.Visible:=false;
+webbrowser1.Show;
+webbrowser1.Navigate(ExtractFilePath(ParamStr(0))+'web\Игра тип личности\капризный.htm');
+end;
+
+procedure TForm9.Image4Click(Sender: TObject);
+begin
+label1.Caption:='Ваш результат ';
+panel1.Visible:=false;
+webbrowser1.Show;
+webbrowser1.Navigate(ExtractFilePath(ParamStr(0))+'web\Игра тип личности\надёжный.htm');
+end;
+
+procedure TForm9.Image5Click(Sender: TObject);
+begin
+label1.Caption:='Ваш результат ';
+panel1.Visible:=false;
+webbrowser1.Show;
+webbrowser1.Navigate(ExtractFilePath(ParamStr(0))+'web\Игра тип личности\романтический.htm');
+end;
+
+procedure TForm9.Image6Click(Sender: TObject);
+begin
+label1.Caption:='Ваш результат ';
+panel1.Visible:=false;
+webbrowser1.Show;
+webbrowser1.Navigate(ExtractFilePath(ParamStr(0))+'web\Игра тип личности\творческий.htm');
+end;
+
+procedure TForm9.Image7Click(Sender: TObject);
+begin
+label1.Caption:='Ваш результат ';
+panel1.Visible:=false;
+webbrowser1.Show;
+webbrowser1.Navigate(ExtractFilePath(ParamStr(0))+'web\Игра тип личности\терпеливый.htm');
+end;
+
+procedure TForm9.Image8Click(Sender: TObject);
+begin
+label1.Caption:='Ваш результат ';
+panel1.Visible:=false;
+webbrowser1.Show;
+webbrowser1.Navigate(ExtractFilePath(ParamStr(0))+'web\Игра тип личности\уникальный.htm');
+end;
+
+procedure TForm9.Image9Click(Sender: TObject);
+begin
+label1.Caption:='Ваш результат ';
+panel1.Visible:=false;
+webbrowser1.Show;
+webbrowser1.Navigate(ExtractFilePath(ParamStr(0))+'web\Игра тип личности\честный.htm');
+end;
+
+procedure TForm9.N2Click(Sender: TObject);
+begin
+ form9.close;
+ form7.show;
+end;
+
+procedure TForm9.N3Click(Sender: TObject);
+begin
+form9.close;
+form4.show;
+end;
+
+procedure TForm9.N4Click(Sender: TObject);
+begin
+form5.show;
+form9.close;
+end;
+
+procedure TForm9.N5Click(Sender: TObject);
+begin
+form9.close;
+form6.show;
+end;
+
+procedure TForm9.N6Click(Sender: TObject);
+begin
+form6.show;
+form9.close;
+end;
+
+procedure TForm9.N7Click(Sender: TObject);
+begin
+ShellExecute(0, PChar('Open'), PChar ('справка.chm'), nil, nil, SW_SHOW);
+end;
+
+end.

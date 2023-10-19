@@ -1,0 +1,165 @@
+//Форма с тестом "Бостонский опросник
+unit Unit3;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
+  Vcl.StdCtrls, Vcl.Menus, ShellAPI;
+
+type
+  TForm3 = class(TForm)
+    Image1: TImage;
+    RadioGroup1: TRadioGroup;
+    Button1: TButton;
+    Button2: TButton;
+    MainMenu1: TMainMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    N5: TMenuItem;
+    N6: TMenuItem;
+    Button3: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
+    procedure N5Click(Sender: TObject);
+    procedure N6Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form3: TForm3;
+  f,fil,f1: text;
+  s: string;
+  a,b,c,d, sum,i,sm: integer;
+
+implementation
+
+{$R *.dfm}
+
+uses Unit1, Unit2, Unit4, Unit5, Unit6, Unit7;
+
+procedure TForm3.Button1Click(Sender: TObject);
+begin
+//связываем переменные с файлами
+AssignFile( f ,ExtractFilePath(ParamStr(0))+'test.txt');
+AssignFile(f1,ExtractFilePath(ParamStr(0))+'test_resultat_by_category.txt');
+//открываем для записи
+rewrite(f1);
+button1.Visible:=false;//делаем кнопку невидимой
+RadioGroup1.Visible:=true;// делаем  RadioGroup видимым
+button2.Visible:=true;// делаем  кнопку видимым
+a:=0;
+b:=0;
+c:=0;
+d:=0;
+reset(f);//читаем из файла
+readln(f,s); //читаем первую строку
+repeat
+//Если первый символ строки ‘-‘ значит это вопрос
+if (s[1]='-') then begin
+delete(s,1,1);
+RadioGroup1.Caption:=s;
+end
+else RadioGroup1.Items.Add(s);//Иначе ответ
+readln(f,s);
+//повторяем пока не конец файла и 1 символ строки " - "
+until (s[1]='-') or (Eof(f));
+end;
+
+procedure TForm3.Button2Click(Sender: TObject);
+begin
+if (RadioGroup1.ItemIndex>-1) and (not Eof(f)) then begin
+case RadioGroup1.ItemIndex of //выбор кнопок на панели RadioGroup
+0: begin
+    a:=a+4;//считаем сумму баллов
+    writeln(f1,4);//записываем полученный балл в файл
+   end;
+1: begin
+    b:=b+3;
+    writeln(f1,3);
+   end;
+2: begin
+    c:=c+2;
+    writeln(f1,2);
+   end;
+3: begin
+     d:=d+1;
+     writeln(f1,1);
+   end;
+end;
+RadioGroup1.Items.Clear; //номеру верного ответа то балл прибавляется
+Repeat //и очищается поле для следующего вопроса
+if (s[1]='-') then begin
+delete(s,1,1);
+RadioGroup1.Caption:=s;
+end
+else
+RadioGroup1.Items.Add(s);
+readln(f,s);
+until (s[1]='-') or (Eof(f)) or (s[1]='*');
+end ;
+if Eof(f) then begin
+Button2.Enabled:=False; //кнопка становится недоступной в завершении проекта
+button3.Visible:=true;
+RadioGroup1.Enabled:=false;
+CloseFile(f);//закрываем файлы
+closefile(f1);
+end;
+end;
+
+
+
+procedure TForm3.Button3Click(Sender: TObject);
+begin
+//связываем переменную с файлом
+AssignFile(fil,ExtractFilePath(ParamStr(0))+'resultat.txt');
+rewrite(fil); // открываем для записи
+sum:=a+b+c+d; //считаем общую сумму балов
+write(fil,sum); //записываем в файл
+closefile(fil); //закрываем файл
+//переход на форму с результатами
+Form3.hide;
+form2.show;
+end;
+
+//переход на главную форму
+procedure TForm3.N2Click(Sender: TObject);
+begin
+form3.close;
+form7.show;
+end;
+//форма "Как развивать ЭИ"
+procedure TForm3.N3Click(Sender: TObject);
+begin
+form3.close;
+form4.show;
+end;
+//Форма "Элементы ЭИ"
+procedure TForm3.N4Click(Sender: TObject);
+begin
+form5.show;
+form3.close;
+end;
+//форма "Игры"
+procedure TForm3.N5Click(Sender: TObject);
+begin
+form6.show;
+form3.close;
+end;
+//справка
+procedure TForm3.N6Click(Sender: TObject);
+begin
+ShellExecute(0, PChar('Open'), PChar ('справка.chm'), nil, nil, SW_SHOW);
+end;
+
+end.

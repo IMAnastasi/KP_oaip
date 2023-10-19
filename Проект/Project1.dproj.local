@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.871,=C:\Users\Nasty\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.250,=C:\Users\Nasty\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.200,C:\Users\Nasty\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\КП ОАиП\Проект\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.200,C:\Users\Nasty\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\КП ОАиП\Проект\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.120,=D:\КП ОАиП\Проект\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.508,=C:\Users\Nasty\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.836,C:\Users\Nasty\OneDrive\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\КП ОАиП\Проект\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.811,=D:\КП ОАиП\Проект\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.026,=C:\Users\Nasty\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.772,=C:\Users\Nasty\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023.05.30 10:31:13.571,=D:\КП ОАиП\Проект\Unit4.pas</Transaction>
+    <Transaction>2023.05.30 10:50:30.585,=D:\КП ОАиП\Проект\Unit5.pas</Transaction>
+    <Transaction>2023.05.30 10:56:31.147,=D:\КП ОАиП\Проект\Unit6.pas</Transaction>
+  </Transactions>
+</BorlandProject>

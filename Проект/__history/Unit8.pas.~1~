@@ -1,0 +1,71 @@
+unit Unit8;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.Imaging.pngimage,
+  Vcl.ExtCtrls;
+
+type
+  TForm8 = class(TForm)
+    Image1: TImage;
+    MainMenu1: TMainMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    N5: TMenuItem;
+    N6: TMenuItem;
+    N7: TMenuItem;
+    procedure N2Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
+    procedure N5Click(Sender: TObject);
+    procedure N6Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form8: TForm8;
+
+implementation
+
+{$R *.dfm}
+
+uses Unit1, Unit2, Unit3, Unit4, Unit5, Unit6, Unit7;
+
+procedure TForm8.N2Click(Sender: TObject);
+begin
+form8.close;
+form7.show;
+end;
+
+procedure TForm8.N3Click(Sender: TObject);
+begin
+form8.close;
+form4.show;
+end;
+
+procedure TForm8.N4Click(Sender: TObject);
+begin
+ form8.close;
+ form5.show;
+end;
+
+procedure TForm8.N5Click(Sender: TObject);
+begin
+form8.close;
+form6.show;
+end;
+
+procedure TForm8.N6Click(Sender: TObject);
+begin
+form8.close;
+form6.show;
+end;
+
+end.

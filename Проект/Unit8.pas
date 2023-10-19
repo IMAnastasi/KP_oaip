@@ -1,0 +1,163 @@
+//Тест "Угадай эмоцию"
+unit Unit8;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.Imaging.pngimage,
+  Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Imaging.jpeg, System.ImageList, Vcl.ImgList, ShellAPI;
+
+type
+  TForm8 = class(TForm)
+    Image1: TImage;
+    MainMenu1: TMainMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    N6: TMenuItem;
+    N7: TMenuItem;
+    RadioGroup1: TRadioGroup;
+    Image2: TImage;
+    Label1: TLabel;
+    Button1: TButton;
+    Image3: TImage;
+    Image4: TImage;
+    Image5: TImage;
+    Image6: TImage;
+    Image7: TImage;
+    Image8: TImage;
+    Image9: TImage;
+    Image10: TImage;
+    Image11: TImage;
+    procedure FormCreate(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
+    procedure N6Click(Sender: TObject);
+    procedure N7Click(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form8: TForm8;
+  f: text;
+  s: string;
+  Nvern, ball,index,i: integer;
+
+implementation
+
+{$R *.dfm}
+
+uses Unit1, Unit2, Unit3, Unit4, Unit5, Unit6, Unit7;
+
+procedure TForm8.FormCreate(Sender: TObject);
+begin
+i:=0;
+ AssignFile( f, ExtractFilePath(ParamStr(0))+'Тест\тест по эмоциям.txt');
+ reset(f); //Открываем файл для чтения
+readln(f,s); //Считываем первую строку из файла
+ball:=0; //изначально количество баллов 0
+repeat
+if (s[1]='-') then begin //Если первый символ строки ‘-‘ значит это вопрос
+delete(s,1,1);
+RadioGroup1.Caption:=s;
+end
+else if s[1]='*' then begin //Если перв символ ‘*’ значит это номер верного ответа
+delete(s,1,1);
+Nvern:=StrToInt(s);
+end
+else RadioGroup1.Items.Add(s); //Иначе это вариант ответа
+readln(f,s); //Считываем следующую строку из файла
+until (s[1]='-') or (Eof(f));
+end;
+
+
+procedure TForm8.Button1Click(Sender: TObject);
+begin
+if (RadioGroup1.ItemIndex>-1) and (not Eof(f)) then begin
+if RadioGroup1.ItemIndex = Nvern-1 then ball:=ball+1; //Если выбранный вариант соответствует
+RadioGroup1.Items.Clear; //номеру верного ответа то балл прибавляется
+Repeat
+ //проверка индекса для скрытия фотографии
+if i=1 then
+  image11.Visible:=false;
+if i=2 then
+  image10.Visible:=false;
+if i=3 then
+  image9.Visible:=false;
+if i=4 then
+  image8.Visible:=false;
+if i=5 then
+  image7.Visible:=false;
+if i=6 then
+  image6.Visible:=false;
+if i=7 then
+  image5.Visible:=false;
+if i=8 then
+  image4.Visible:=false;
+if i=9 then
+  image3.Visible:=false;
+ //и очищается поле для следующего вопроса
+if (s[1]='-') then begin
+delete(s,1,1);
+RadioGroup1.Caption:=s;
+i:=i+1;
+end
+else if s[1]='*' then begin
+delete(s,1,1);
+Nvern:=StrToInt(s);
+end
+else RadioGroup1.Items.Add(s);
+readln(f,s);
+Label1.Caption:=s;
+until (s[1]='-') or (Eof(f));
+end
+//Если конец файла достигнут, значит вопросы закончились
+Else if Eof(f) then begin
+delete(s,1,1);
+Nvern:=StrToInt(s);
+if RadioGroup1.ItemIndex = Nvern-1 then ball:=ball+1;
+label1.Visible:=true;
+Label1.Caption:='Ваш результат: '+IntToStr(ball)+' '; //Вывод количества баллов
+CloseFile(f);
+Button1.Enabled:=False;//кнопка становиться недоступной
+end;
+end;
+
+procedure TForm8.N2Click(Sender: TObject);
+begin
+form8.close;
+form7.show;
+end;
+
+procedure TForm8.N3Click(Sender: TObject);
+begin
+form8.close;
+form4.show;
+end;
+
+procedure TForm8.N4Click(Sender: TObject);
+begin
+ form8.close;
+ form5.show;
+end;
+
+procedure TForm8.N6Click(Sender: TObject);
+begin
+form8.close;
+form6.show;
+end;
+
+procedure TForm8.N7Click(Sender: TObject);
+begin
+ShellExecute(0, PChar('Open'), PChar ('справка.chm'), nil, nil, SW_SHOW);
+end;
+
+end.

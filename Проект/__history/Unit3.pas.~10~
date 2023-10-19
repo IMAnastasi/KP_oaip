@@ -1,0 +1,160 @@
+unit Unit3;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
+  Vcl.StdCtrls, Vcl.Menus;
+
+type
+  TForm3 = class(TForm)
+    Image1: TImage;
+    RadioGroup1: TRadioGroup;
+    Button1: TButton;
+    Button2: TButton;
+    Button4: TButton;
+    MainMenu1: TMainMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    N5: TMenuItem;
+    N6: TMenuItem;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure N7Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
+    procedure N5Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form3: TForm3;
+  f,fil,f1: text;
+  s: string;
+  a,b,c,d, sum,i,sm: integer;
+
+implementation
+
+{$R *.dfm}
+
+uses Unit1, Unit2, Unit4, Unit5, Unit6, Unit7;
+
+procedure TForm3.Button1Click(Sender: TObject);
+begin
+AssignFile( f ,'тест.txt');
+AssignFile(f1,'результаты теста по категориям.txt');
+rewrite(f1);
+button1.Visible:=false;
+RadioGroup1.Visible:=true;
+a:=0;
+b:=0;
+c:=0;
+d:=0;
+reset(f);
+readln(f,s);
+repeat
+if (s[1]='-') then begin //Если первый символ строки ‘-‘ значит это вопрос
+delete(s,1,1);
+RadioGroup1.Caption:=s;
+end
+else RadioGroup1.Items.Add(s);
+readln(f,s);
+until (s[1]='-') or (Eof(f));
+end;
+
+procedure TForm3.Button2Click(Sender: TObject);
+begin
+if (RadioGroup1.ItemIndex>-1) and (not Eof(f)) then begin
+case RadioGroup1.ItemIndex of //выбор кнопок на панели RadioGroup
+0: begin
+    a:=a+4;
+    writeln(f1,4);
+   end;
+1: begin
+    b:=b+3;
+    writeln(f1,3);
+   end;
+2: begin
+    c:=c+2;
+    writeln(f1,2);
+   end;
+3: begin
+     d:=d+1;
+     writeln(f1,1);
+   end;
+end;
+RadioGroup1.Items.Clear; //номеру верного ответа то балл прибавляется
+Repeat //и очищается поле для следующего вопроса
+if (s[1]='-') then begin
+delete(s,1,1);
+RadioGroup1.Caption:=s;
+end
+else
+RadioGroup1.Items.Add(s);
+readln(f,s);
+until (s[1]='-') or (Eof(f));
+end
+Else if Eof(f) then begin
+CloseFile(f);
+closefile(f1) ;
+Button2.Enabled:=False; //кнопка становится недоступной в завершении проекта
+button4.Visible:=true;
+end;
+end;
+
+procedure TForm3.Button3Click(Sender: TObject);
+begin
+form3.close;
+form1.show;
+end;
+
+procedure TForm3.Button4Click(Sender: TObject);
+begin
+AssignFile(fil,'результаты.txt');
+rewrite(fil);
+sum:=a+b+c+d;
+write(fil,sum);
+closefile(fil);
+Form3.hide;
+form2.show;
+end;
+
+procedure TForm3.N2Click(Sender: TObject);
+begin
+form3.close;
+form7.show;
+end;
+
+procedure TForm3.N3Click(Sender: TObject);
+begin
+form3.close;
+form4.show;
+end;
+
+procedure TForm3.N4Click(Sender: TObject);
+begin
+form5.show;
+form3.close;
+end;
+
+procedure TForm3.N5Click(Sender: TObject);
+begin
+form6.show;
+form3.close;
+end;
+
+procedure TForm3.N7Click(Sender: TObject);
+begin
+ close;
+end;
+
+end.
